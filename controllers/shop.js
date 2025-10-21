@@ -9,7 +9,20 @@ const getProducts = (req, res, next) => {
     });
   });
 };
-
+const getProduct = (req, res, next) => {
+  const prodId = req.params.productId;
+  Product.findById(prodId, (product) => {
+    if (product) {
+      res.render("shop/detail-product", {
+        product: product,
+        pageTitle: `Product Detail: ${product.title}`,
+        path: "/products",
+      });
+    } else {
+      res.status(404).render("404", { pageTitle: "Product Not Found" });
+    }
+  });
+};
 const getIndex = (req, res, next) => {
   Product.fetchAll((products) => {
     res.render("shop/index", {
@@ -45,4 +58,5 @@ module.exports = {
   getOrders: getOrders,
   getCheckout: getCheckout,
   getProducts: getProducts,
+  getProduct: getProduct,
 };
