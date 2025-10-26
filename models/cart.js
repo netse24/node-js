@@ -58,16 +58,16 @@ class Cart {
         return;
       }
       let cart = getCart(fileContent);
-      const updatedProduct = { ...JSON.parse(fileContent) };
       const product = cart.products.find((prod) => prod.id === id);
+
       if (!product) {
         return;
       }
 
       const productQty = product.qty;
       cart.products = cart.products.filter((prod) => prod.id !== id);
+      cart.totalPrice -= +productPrice * productQty;
 
-      updatedProduct.totalPrice -= productPrice * productQty;
       fs.writeFile(p, JSON.stringify(cart), (err) => {
         console.log("Cart Delete Write Error:", err);
       });

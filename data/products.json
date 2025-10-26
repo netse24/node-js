@@ -1,9 +1,1 @@
-[
-  {
-    "id": "e9e7f81f-90c1-4148-9375-3ca689bcaf89",
-    "title": "Photo Grapher",
-    "imageUrl": "https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
-    "description": "GEesssss",
-    "price": "12"
-  }
-]
+[{"id":"e9e7f81f-90c1-4148-9375-3ca689bcaf89","title":"Photo Grapher","imageUrl":"https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000","description":"GEesssss","price":"12"},{"id":"59a95a4d-4d3d-4d5b-8482-6346625ec214","title":"Another Add Product","imageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5UtekBF2OHTxfnDj4RuFNOtcDHHysCq8o7g&s","description":"Hello Man,","price":"12"}]
