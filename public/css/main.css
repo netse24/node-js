@@ -302,6 +302,10 @@ form {
   cursor: pointer;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
 .btn:hover,
 .btn:active {
   background-color: #00695c;

@@ -1,4 +1,5 @@
 const Product = require("../models/product");
+const Cart = require("../models/cart");
 
 const getProducts = (req, res, next) => {
   Product.fetchAll((products) => {
@@ -34,9 +35,30 @@ const getIndex = (req, res, next) => {
 };
 
 const getCart = (req, res, next) => {
-  res.render("shop/cart", {
-    pageTitle: "Your Cart",
-    path: "/cart",
+  Cart.getCartProduct((cart) => {
+    Product.fetchAll((products) => {
+      const cartProducts = [];
+      for (prod of products) {
+        const cartProductData = cart.products.find((p) => p.id === prod.id);
+        if (cartProductData) {
+          cartProducts.push({ productData: prod, qty: cartProductData.qty });
+        }
+      }
+      res.render("shop/cart", {
+        pageTitle: "Your Cart",
+        path: "/cart",
+        products: cartProducts,
+      });
+    });
+  });
+};
+
+const postCart = (req, res, next) => {
+  const prodId = req.body.productId;
+  Product.findById(prodId, (product) => {
+    // Here you would typically add the product to the user's cart in the database
+    Cart.addProduct(prodId, product.price);
+    res.redirect("/cart");
   });
 };
 const getOrders = (req, res, next) => {
@@ -55,6 +77,7 @@ const getCheckout = (req, res, next) => {
 module.exports = {
   getIndex: getIndex,
   getCart: getCart,
+  postCart: postCart,
   getOrders: getOrders,
   getCheckout: getCheckout,
   getProducts: getProducts,
