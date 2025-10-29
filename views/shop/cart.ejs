@@ -8,7 +8,7 @@
         <h1>Your Shopping Cart</h1>
         <hr />
         <% if (products.length > 0) { %>
-        <table class="table">
+        <table class="table centered">
           <thead>
             <tr>
               <th scope="col">Image</th>
@@ -19,17 +19,17 @@
             </tr>
           </thead>
           <tbody>
-            <% products.forEach(({productData, qty}) => { %>
+            <% products.forEach(({id, imageUrl, title, price, cartItem: {quantity} }) => { %>
             <tr>
               <td>
                 <img
-                  src="<%= productData.imageUrl %>"
-                  alt="<%= productData.title %>"
+                  src="<%= imageUrl %>"
+                  alt="<%= title %>"
                   style="width: 50px; height: auto"
                 />
-              <td><%= productData.title %></td>
-              <td><%= qty %></td>
-              <td>$<%= productData.price %></td>
+              <td><%= title %></td>
+              <td><%= quantity %></td>
+              <td>$<%= price %></td>
               <td>
                 <form
                   action="/cart-delete-item"
@@ -39,7 +39,7 @@
                   <input
                     type="hidden"
                     name="productId"
-                    value="<%= productData.id %>"
+                    value="<%= id %>"
                   />
                   <button type="submit" class="btn btn-danger btn-sm">
                     Remove
@@ -50,6 +50,11 @@
             <% }); %>
           </tbody>
         </table>
+        <div>
+          <form action="/create-order" method="post">
+            <button type="submit" class="btn">Checkout</button>
+          </form>
+        </div>
         <% } else { %>
         <p>Your cart is empty.</p>
         <% } %>
